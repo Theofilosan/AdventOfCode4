@@ -18,9 +18,12 @@
             var parts = card.Split(new char[] { ':' }, 2);
             // Further split the second part at the '|' character to separate winning numbers from your numbers
             var numberParts = parts[1].Trim().Split('|');
-            var winningNumbers = numberParts[0].Trim().Split(" ").Select(int.Parse).ToList();
-            //var yourNumbers = numberParts[1].Trim().Split(" ").Select(int.Parse).ToList();
-            var yourNumbers = numberParts[1].Trim().Split(' ').Select(int.Parse).ToList();
+            var winningNumbers = numberParts[0].Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                                                    .Select(int.Parse)
+                                                    .ToList();
+            var yourNumbers = numberParts[1].Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(int.Parse)
+                                                .ToList();
 
             cards.Add(Tuple.Create(winningNumbers, yourNumbers));
         }
